@@ -1,10 +1,18 @@
 pipeline {
     agent any
-
+    
+    environment {
+        PATH = '/usr/share/apache-maven:$PATH'
+    }
     stages {
         stage('Git checkout') {
             steps {
                 git 'https://github.com/Bhavesh202021/Hello_Python.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                sh 'mvn clean packages'
             }
         }
     }
